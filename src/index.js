@@ -10,11 +10,11 @@ import {
 const list = document.body.querySelector('.ToDolist');
 let tasks = [];
 
-function updateTasksArray() {
+const updateTasksArray = () => {
   tasks = JSON.parse(window.localStorage.getItem('tasks'));
 }
 
-function populateHTML(tasks) {
+const populateHTML = (tasks) => {
   const lis = document.querySelectorAll('.li');
   lis.forEach((li) => li.remove());
 

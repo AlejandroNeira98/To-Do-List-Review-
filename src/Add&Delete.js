@@ -1,4 +1,4 @@
-export function updateLocalStorageFromHTML(tasks) {
+const updateLocalStorageFromHTML = (tasks) => {
   const newTasks = [];
   let i = 1;
   document.querySelectorAll('.task').forEach((HTMLtask) => {
@@ -13,34 +13,14 @@ export function updateLocalStorageFromHTML(tasks) {
   window.localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
-export function updateIndexes(tasks) {
+const updateIndexes = (tasks) => {
   tasks.forEach((task) => {
     task.index = tasks.indexOf(task) + 1;
   });
   window.localStorage.setItem('tasks', JSON.stringify(tasks));
-  /*  const tasksOrdered = [];
-
-  for (let i = 1; i <= tasks.length; i += 1) {
-    let position = 0;
-    let min = tasks[0];
-
-    for (let n = 0; n < tasks.length; n += 1) {
-      if (tasks[n].index < min.index) {
-        min = tasks[n];
-        position = n;
-      }
-    }
-    min.index = i;
-    tasksOrdered.push(min);
-    tasks.splice(position, 1);
-  }
-  tasks = tasksOrdered;
-  if (tasksOrdered !== []) {
-    window.localStorage.setItem('tasks', JSON.stringify(tasks));
-  } */
 }
 
-export function addTask(tasks) {
+const addTask = (tasks) => {
   const inputTask = document.getElementById('addTask');
   if (inputTask.value !== '') {
     const inputTaskObj = {
@@ -55,11 +35,13 @@ export function addTask(tasks) {
   inputTask.value = null;
 }
 
-export function removeTask(tasks) {
+const removeTask = (tasks) => {
   updateLocalStorageFromHTML(tasks);
 }
 
-export function editTaskDescription(htmlTask, taskObj, tasks) {
+const editTaskDescription = (htmlTask, taskObj, tasks) => {
   taskObj.description = htmlTask.value;
   window.localStorage.setItem('tasks', JSON.stringify(tasks));
 }
+
+export {updateIndexes, updateLocalStorageFromHTML, addTask, removeTask, editTaskDescription };
